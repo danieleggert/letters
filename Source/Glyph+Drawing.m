@@ -16,7 +16,10 @@
 - (void)drawInContext:(CGContextRef)ctx centeredInRect:(CGRect)rect;
 {
     CGPoint position = rect.origin;
-    position.y += CGRectGetHeight(self.boundingRect);
+    position.y -= CGRectGetHeight(self.boundingRect);
+    
+    CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
+    CGContextSetTextDrawingMode(ctx, kCGTextFill);
     
     CGContextSetTextMatrix(ctx, CGAffineTransformScale(self.textMatrix, 1, -1));
     CGContextSetFont(ctx, self.graphicsFont);

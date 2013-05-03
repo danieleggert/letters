@@ -147,10 +147,10 @@
 				3E111E9A1733DEB9008CD596 /* Glyph.m */,
 				3E111E9F1733E64C008CD596 /* Glyph+Drawing.h */,
 				3E111EA01733E64C008CD596 /* Glyph+Drawing.m */,
-				D2589965F7F155A4635040ED /* RootViewController.m */,
 				D258986B495AB2502A04AC6B /* RootViewController.h */,
-				D2589FDE367E6E3A0223D6EE /* PanningHandler.m */,
+				D2589965F7F155A4635040ED /* RootViewController.m */,
 				D25898DA39C6AA556E2094B3 /* PanningHandler.h */,
+				D2589FDE367E6E3A0223D6EE /* PanningHandler.m */,
 				3E111E9C1733E571008CD596 /* GlyphView.h */,
 				3E111E9D1733E571008CD596 /* GlyphView.m */,
 			);

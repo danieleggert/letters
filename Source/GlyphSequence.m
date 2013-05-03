@@ -70,7 +70,7 @@
 - (NSDictionary *)attributes;
 {
     NSString *name = @"Helvetica";
-    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) name, 36, NULL);
+    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) name, 72, NULL);
     return @{
              (__bridge id) kCTFontAttributeName: (__bridge id) font,
              };

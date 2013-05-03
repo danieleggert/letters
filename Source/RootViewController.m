@@ -8,31 +8,55 @@
 #import "RootViewController.h"
 #import "PanningHandler.h"
 #import "GlyphView.h"
+#import "GlyphSequence.h"
+#import "Glyph.h"
 
 
 
 @interface RootViewController () <UIGestureRecognizerDelegate>
+
+@property (readonly, nonatomic, strong) NSMutableArray *panHandlers;
+
 @end
 
 
 
-@implementation RootViewController {
+@implementation RootViewController
+{
     PanningHandler* panHandler;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad;
+{
     [super viewDidLoad];
     [self setup];
 }
 
-- (void)setup {
-    UIView* view1 = [[GlyphView alloc] initWithFrame:CGRectMake(100, 100, 150, 150)];
-    view1.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:view1];
-    panHandler = [[PanningHandler alloc] initWithView:view1];
+- (void)setup;
+{
+    _panHandlers = [NSMutableArray array];
+    
+    for (UIView *view in [self viewsForString:@"Konf"]) {
+        view.backgroundColor = [UIColor greenColor];
+        [self.view addSubview:view];
+        [self.panHandlers addObject:[[PanningHandler alloc] initWithView:view]];
+    }
     
     UIRotationGestureRecognizer* rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotated:)];
     [self.view addGestureRecognizer:rotationGestureRecognizer];
+}
+
+- (NSArray *)viewsForString:(NSString *)text;
+{
+    NSMutableArray *result = [NSMutableArray array];
+    
+    GlyphSequence *sequence = [GlyphSequence sequence];
+    sequence.text = text;
+    for (Glyph *glyph in sequence.glyphs) {
+        GlyphView *view = [GlyphView viewWithGlyph:glyph];
+        [result addObject:view];
+    }
+    return result;
 }
 
 

@@ -8,7 +8,6 @@
 
 #import "GlyphView.h"
 
-#import "GlyphSequence.h"
 #import "Glyph.h"
 #import "Glyph+Drawing.h"
 
@@ -16,29 +15,21 @@
 
 @implementation GlyphView
 
-- (id)initWithFrame:(CGRect)frame
++ (instancetype)viewWithGlyph:(Glyph *)glyph;
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self dirtySetupHack];
-    }
-    return self;
+    CGRect frame = glyph.boundingRect;
+    frame.origin.x += glyph.position.x;
+    frame.origin.y += glyph.position.y;
+    GlyphView *view = [[super alloc] initWithFrame:frame];
+    view.glyph = glyph;
+    [view setNeedsDisplay];
+    return view;
 }
 
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     [self.glyph drawInContext:ctx centeredInRect:self.bounds];
-}
-
-- (void)dirtySetupHack;
-{
-    GlyphSequence *sequence = [GlyphSequence sequence];
-    sequence.text = @"F";
-    NSArray *glyphs = sequence.glyphs;
-    NSAssert([glyphs count] == 1, @"");
-    self.glyph = glyphs[0];
-    [self setNeedsDisplay];
 }
 
 @end

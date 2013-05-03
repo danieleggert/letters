@@ -14,6 +14,8 @@
 
 @interface GlyphView : UIView
 
++ (instancetype)viewWithGlyph:(Glyph *)glyph;
+
 @property (nonatomic, strong) Glyph *glyph;
 
 @end
