@@ -22,9 +22,6 @@
     position.x -= self.boundingRect.origin.x;
     position.y -= self.boundingRect.origin.y;
     
-    CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
-    CGContextSetTextDrawingMode(ctx, kCGTextFill);
-    
     CGContextSetTextMatrix(ctx, CGAffineTransformScale(self.textMatrix, 1, -1));
     CGContextSetFont(ctx, self.graphicsFont);
     CGContextSetFontSize(ctx, self.pointSize);

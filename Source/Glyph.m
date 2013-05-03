@@ -16,4 +16,20 @@
     return [[self alloc] init];
 }
 
+- (void)dealloc;
+{
+    self.graphicsFont = NULL;
+}
+
+- (void)setGraphicsFont:(CGFontRef)graphicsFont;
+{
+    if (_graphicsFont == graphicsFont) {
+        return;
+    }
+    if (_graphicsFont != NULL) {
+        CFRelease(_graphicsFont);
+    }
+    _graphicsFont = graphicsFont;
+}
+
 @end

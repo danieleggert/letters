@@ -18,4 +18,6 @@
 
 @property (nonatomic, strong) Glyph *glyph;
 
+@property (nonatomic) BOOL selected;
+
 @end

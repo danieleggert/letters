@@ -46,12 +46,31 @@ static const CGFloat Margin = 1;
     return NO;
 }
 
+- (void)setSelected:(BOOL)selected;
+{
+    if (selected == _selected) {
+        return;
+    }
+    _selected = selected;
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect r = self.bounds;
     r.origin.x += self.offset.x;
     r.origin.y -= self.offset.y;
+
+    
+    if (self.selected) {
+        CGContextSetFillColorWithColor(ctx, [UIColor darkGrayColor].CGColor);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
+        CGContextSetTextDrawingMode(ctx, kCGTextFillStroke);
+    } else {
+        CGContextSetFillColorWithColor(ctx, [UIColor darkGrayColor].CGColor);
+        CGContextSetTextDrawingMode(ctx, kCGTextFill);
+    }
     [self.glyph drawInContext:ctx centeredInRect:r];
 }
 
