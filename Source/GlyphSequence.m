@@ -33,6 +33,11 @@
     return [[self alloc] init];
 }
 
+- (void)dealloc
+{
+    self.line = NULL;
+}
+
 - (void)setText:(NSString *)text;
 {
     if ((text == _text) || ([text isEqualToString:_text])) {
