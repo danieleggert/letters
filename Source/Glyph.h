@@ -14,11 +14,7 @@
 
 + (instancetype)glyph;
 
-@property (nonatomic) CGFontRef graphicsFont;
-@property (nonatomic) CGFloat pointSize;
-
-@property (nonatomic) CGGlyph graphicsGlyph;
 @property (nonatomic) CGPoint position;
-@property (nonatomic) CGAffineTransform textMatrix;
+@property (readonly, nonatomic) CGRect boundingRect;
 
 @end

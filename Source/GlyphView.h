@@ -1,19 +1,19 @@
 //
-//  Glyph.m
+//  GlyphView.h
 //  Letters
 //
 //  Created by Daniel Eggert on 5/3/13.
 //  Copyright (c) 2013 Daniel Eggert. All rights reserved.
 //
 
-#import "Glyph+Internal.h"
+#import <UIKit/UIKit.h>
+
+@class Glyph;
 
 
-@implementation Glyph
 
-+ (instancetype)glyph;
-{
-    return [[self alloc] init];
-}
+@interface GlyphView : UIView
+
+@property (nonatomic, strong) Glyph *glyph;
 
 @end

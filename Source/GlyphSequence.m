@@ -8,7 +8,7 @@
 
 #import "GlyphSequence.h"
 
-#import "Glyph.h"
+#import "Glyph+Internal.h"
 #import <CoreText/CoreText.h>
 
 
@@ -20,6 +20,7 @@
 }
 
 @property (nonatomic) CTLineRef line;
+@property (readonly, nonatomic, copy) NSDictionary *attributes;
 
 @end
 
@@ -37,6 +38,7 @@
     if ((text == _text) || ([text isEqualToString:_text])) {
         return;
     }
+    _text = [text copy];
     self.line = NULL;
 }
 
@@ -49,6 +51,29 @@
         CFRelease(_line);
     }
     _line = CFRetain(line);
+}
+
+- (CTLineRef)line;
+{
+    if (_line == NULL) {
+        NSAttributedString *string = nil;
+        if (self.text != nil) {
+            string = [[NSAttributedString alloc] initWithString:self.text attributes:self.attributes];
+        }
+        if (string != nil) {
+            _line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef) string);
+        }
+    }
+    return _line;
+}
+
+- (NSDictionary *)attributes;
+{
+    NSString *name = @"Helvetica";
+    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) name, 36, NULL);
+    return @{
+             (__bridge id) kCTFontAttributeName: (__bridge id) font,
+             };
 }
 
 - (NSArray *)glyphs;
@@ -75,6 +100,9 @@
         CTRunGetPositions(run, CFRangeMake(0, count), positions);
         CGAffineTransform textMatrix = CTRunGetTextMatrix(run);
         
+        CGRect boundingRects[count];
+        (void) CTFontGetBoundingRectsForGlyphs(font, kCTFontOrientationDefault, glyphs, boundingRects, count);
+        
         for (CFIndex i = 0; i < count; ++i) {
             Glyph *glyph = [Glyph glyph];
             glyph.graphicsFont = graphicsFont;
@@ -82,12 +110,12 @@
             glyph.position = positions[i];
             glyph.graphicsGlyph = glyphs[i];
             glyph.textMatrix = textMatrix;
+            glyph.boundingRect = boundingRects[i];
             
             [result addObject:glyph];
         }
     }
-    return @[];
-    
+    return result;
 }
 
 @end

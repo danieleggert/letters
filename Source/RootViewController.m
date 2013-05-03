@@ -7,10 +7,14 @@
 
 #import "RootViewController.h"
 #import "PanningHandler.h"
+#import "GlyphView.h"
+
 
 
 @interface RootViewController () <UIGestureRecognizerDelegate>
 @end
+
+
 
 @implementation RootViewController {
     PanningHandler* panHandler;
@@ -22,7 +26,7 @@
 }
 
 - (void)setup {
-    UIView* view1 = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 150, 150)];
+    UIView* view1 = [[GlyphView alloc] initWithFrame:CGRectMake(100, 100, 150, 150)];
     view1.backgroundColor = [UIColor greenColor];
     [self.view addSubview:view1];
     panHandler = [[PanningHandler alloc] initWithView:view1];
