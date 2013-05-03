@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface GestureController : NSObject
+@interface GlyphController : NSObject
 - (id)initWithView:(UIView*)view;
 
 - (void)clear;

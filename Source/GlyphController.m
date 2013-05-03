@@ -5,15 +5,15 @@
 //
 
 
-#import "GestureController.h"
+#import "GlyphController.h"
 #import "GlyphView.h"
 
 
-@interface GestureController () <UIGestureRecognizerDelegate>
+@interface GlyphController () <UIGestureRecognizerDelegate>
 @end
 
 
-@implementation GestureController {
+@implementation GlyphController {
     CGPoint panOffset;
     CGFloat rotationOffset;
     UIView* glyphContainer;
@@ -49,6 +49,18 @@
     [glyphContainer addGestureRecognizer:tapGestureRecognizer];
 }
 
+
+- (void)deleteSelectedGlyphs {
+    NSSet* glyphs = [selectedGlyphs copy];
+    for (GlyphView* glyph in glyphs) {
+        [self deselectGlyph:glyph];
+        [glyph removeFromSuperview];
+    }
+}
+
+
+#pragma mark Glyph selection
+
 - (void)selectGlyph:(GlyphView*)glyphView {
     glyphView.selected = YES;
     [selectedGlyphs addObject:glyphView];
@@ -77,6 +89,9 @@
 - (BOOL)isGlyphSelected:(GlyphView*)glyph {
     return [selectedGlyphs containsObject:glyph];
 }
+
+
+#pragma mark Gesture recognizer actions
 
 - (void)panned:(UIPanGestureRecognizer*)recognizer {
     CGPoint touchPoint = [recognizer locationInView:glyphContainer];

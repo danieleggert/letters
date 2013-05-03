@@ -9,7 +9,7 @@
 #import "GlyphView.h"
 #import "GlyphSequence.h"
 #import "Glyph.h"
-#import "GestureController.h"
+#import "GlyphController.h"
 
 
 @interface RootViewController ()
@@ -18,7 +18,7 @@
 
 
 @implementation RootViewController {
-    GestureController* gestureController;
+    GlyphController* glyphController;
 }
 
 - (void)viewDidLoad {
@@ -30,7 +30,7 @@
     for (UIView *view in [self viewsForString:@"UIKonf"]) {
         [self.view addSubview:view];
     }
-    gestureController = [[GestureController alloc] initWithView:self.view];
+    glyphController = [[GlyphController alloc] initWithView:self.view];
 }
 
 - (NSArray *)viewsForString:(NSString *)text;
