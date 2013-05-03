@@ -10,4 +10,6 @@
 
 @interface GestureController : NSObject
 - (id)initWithView:(UIView*)view;
+
+- (void)clear;
 @end

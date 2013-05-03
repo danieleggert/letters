@@ -27,10 +27,14 @@
     self = [super init];
     if (self) {
         glyphContainer = aView;
-        selectedGlyphs = [NSMutableSet set];
+        [self clear];
         [self setupRecognizers];
     }
     return self;
+}
+
+- (void)clear {
+    selectedGlyphs = [NSMutableSet set];
 }
 
 - (void)setupRecognizers {
@@ -68,6 +72,10 @@
     for (GlyphView* glyph in glyphs) {
         [self deselectGlyph:glyph];
     }
+}
+
+- (BOOL)isGlyphSelected:(GlyphView*)glyph {
+    return [selectedGlyphs containsObject:glyph];
 }
 
 - (void)panned:(UIPanGestureRecognizer*)recognizer {
@@ -134,7 +142,10 @@
     if (glyphView == nil) {
         return NO;
     } else {
-        [self selectGlyph:glyphView];
+        if (![self isGlyphSelected:glyphView]) {
+            [self deselectAllGlyphs];
+            [self selectGlyph:glyphView];
+        }
         return YES;
     }
 }
