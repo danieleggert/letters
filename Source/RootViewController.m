@@ -12,11 +12,15 @@
 
 
 @interface RootViewController () <UIGestureRecognizerDelegate>
+
+@property (nonatomic) GlyphView *selectedView;
+
 @end
+
+
 
 @implementation RootViewController {
     CGPoint panOffset;
-    UIView* selectedView;
     CGFloat rotationOffset;
 
 }
@@ -33,6 +37,15 @@
     [self setupRecognizers];
 }
 
+- (void)setSelectedView:(GlyphView *)selectedView;
+{
+    if (selectedView == _selectedView) {
+        return;
+    }
+    _selectedView.selected = NO;
+    _selectedView = selectedView;
+    _selectedView.selected = YES;
+}
 
 - (NSArray *)viewsForString:(NSString *)text;
 {
@@ -63,10 +76,11 @@
     if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
         panOffset = [gestureRecognizer locationInView:self.view];
         UIView* view = [self.view hitTest:panOffset withEvent:nil];
-        if (view == self.view) {
+        GlyphView *glyphView = [view isKindOfClass:[GlyphView class]] ? (id) view : nil;
+        if (glyphView == nil) {
             return NO;
         } else {
-            selectedView = view;
+            self.selectedView = glyphView;
             return YES;
         }
     } else if ([gestureRecognizer isKindOfClass:[UIRotationGestureRecognizer class]]) {
@@ -77,7 +91,7 @@
 }
 
 - (void)panned:(UIPanGestureRecognizer*)recognizer {
-    CGAffineTransform transform = selectedView.transform;
+    CGAffineTransform transform = self.selectedView.transform;
     CGAffineTransform inverseTransform = CGAffineTransformInvert(transform);
     CGPoint point = [recognizer locationInView:self.view];
     CGPoint newPoint = point;
@@ -86,24 +100,25 @@
     oldPoint = CGPointApplyAffineTransform(oldPoint, inverseTransform);
     CGFloat deltaX = newPoint.x - oldPoint.x;
     CGFloat deltaY = newPoint.y - oldPoint.y;
-    selectedView.transform = CGAffineTransformTranslate(transform, deltaX, deltaY);
+    self.selectedView.transform = CGAffineTransformTranslate(transform, deltaX, deltaY);
     panOffset = point;
 }
 
 - (void)rotated:(UIRotationGestureRecognizer*)recognizer {
-    if (!selectedView) return;
+    if (!self.selectedView) return;
     CGFloat rotation = recognizer.rotation - rotationOffset;
-    selectedView.transform = CGAffineTransformRotate(selectedView.transform, rotation);
+    self.selectedView.transform = CGAffineTransformRotate(self.selectedView.transform, rotation);
     rotationOffset = recognizer.rotation;
 }
 
 - (void)tapped:(UITapGestureRecognizer*)tapGestureRecognizer {
     CGPoint point = [tapGestureRecognizer locationInView:self.view];
-    UIView* targetView = [self.view hitTest:point withEvent:nil];
-    if (targetView == self.view) {
-        selectedView = nil;
+    UIView* view = [self.view hitTest:point withEvent:nil];
+    GlyphView *glyphView = [view isKindOfClass:[GlyphView class]] ? (id) view : nil;
+    if (glyphView == nil) {
+        self.selectedView = nil;
     } else {
-        selectedView = targetView;
+        self.selectedView = glyphView;
     }
 }
 
