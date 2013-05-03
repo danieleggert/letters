@@ -21,6 +21,8 @@
 		3E111E901733D7F9008CD596 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E111E891733D7F9008CD596 /* Default.png */; };
 		3E111E911733D7F9008CD596 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E111E8A1733D7F9008CD596 /* Default@2x.png */; };
 		3E111E921733D7F9008CD596 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E111E8C1733D7F9008CD596 /* InfoPlist.strings */; };
+		D2589A68E84EF85DCCADEFC7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589965F7F155A4635040ED /* RootViewController.m */; };
+		D2589E9648ADF82CBB7881D8 /* PanningHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589FDE367E6E3A0223D6EE /* PanningHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		3E111E8A1733D7F9008CD596 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3E111E8D1733D7F9008CD596 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		3E111E8E1733D7F9008CD596 /* Letters-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Letters-Info.plist"; sourceTree = "<group>"; };
+		D258986B495AB2502A04AC6B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		D25898DA39C6AA556E2094B3 /* PanningHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanningHandler.h; sourceTree = "<group>"; };
+		D2589965F7F155A4635040ED /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		D2589FDE367E6E3A0223D6EE /* PanningHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanningHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,10 @@
 				3E111E5F1733D79B008CD596 /* AppDelegate.m */,
 				3E111E841733D7E1008CD596 /* Letters-Prefix.pch */,
 				3E111E851733D7E1008CD596 /* main.m */,
+				D2589965F7F155A4635040ED /* RootViewController.m */,
+				D258986B495AB2502A04AC6B /* RootViewController.h */,
+				D2589FDE367E6E3A0223D6EE /* PanningHandler.m */,
+				D25898DA39C6AA556E2094B3 /* PanningHandler.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -271,6 +281,8 @@
 			files = (
 				3E111E601733D79B008CD596 /* AppDelegate.m in Sources */,
 				3E111E861733D7E1008CD596 /* main.m in Sources */,
+				D2589A68E84EF85DCCADEFC7 /* RootViewController.m in Sources */,
+				D2589E9648ADF82CBB7881D8 /* PanningHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
