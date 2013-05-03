@@ -13,7 +13,33 @@
 
 @implementation Glyph (Drawing)
 
-- (void)drawInContext:(CGContextRef)ctx centeredInRect:(CGRect)rect;
+- (void)drawSelected:(BOOL)selected context:(CGContextRef)ctx centeredInRect:(CGRect)rect;
+{
+    CGContextSaveGState(ctx);
+    switch (self.drawingStyle) {
+        default:
+        case GlyphDrawingStyle0: {
+            CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
+            CGContextSetTextDrawingMode(ctx, kCGTextFill);
+            [self showInContext:ctx centeredInRect:rect];
+//            UIImage *image = [UIImage imageNamed:@"texture1"];
+//            CGRect rect = CGRectZero;
+//            rect.size = image.size;
+//            CGContextDrawTiledImage(ctx, rect, image.CGImage);
+//            CGContextFillRect(ctx, CGRectMake(-100, -100, 200, 200));
+            break;
+        }
+    }
+    CGContextRestoreGState(ctx);
+    if (selected) {
+        CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
+        CGContextSetLineWidth(ctx, 3);
+        CGContextSetTextDrawingMode(ctx, kCGTextStroke);
+        [self showInContext:ctx centeredInRect:rect];
+    }
+}
+
+- (void)showInContext:(CGContextRef)ctx centeredInRect:(CGRect)rect;
 {
     CGPoint position = rect.origin;
     // Flip:

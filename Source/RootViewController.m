@@ -63,6 +63,7 @@
     GlyphSequence *sequence = [GlyphSequence sequence];
     sequence.text = text;
     for (Glyph *glyph in sequence.glyphs) {
+        glyph.drawingStyle = (GlyphDrawingStyle_t) arc4random_uniform(GlyphDrawingStyleCount);
         GlyphView *view = [GlyphView viewWithGlyph:glyph];
         [result addObject:view];
     }
