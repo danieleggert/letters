@@ -55,7 +55,10 @@
     if (_line != NULL) {
         CFRelease(_line);
     }
-    _line = CFRetain(line);
+    if (line != NULL) {
+        _line = CFRetain(line);
+    }
+    _line = NULL;
 }
 
 - (CTLineRef)line;

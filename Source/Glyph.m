@@ -29,7 +29,11 @@
     if (_graphicsFont != NULL) {
         CFRelease(_graphicsFont);
     }
-    _graphicsFont = graphicsFont;
+    if (graphicsFont == NULL) {
+        _graphicsFont = NULL;
+    } else {
+        _graphicsFont = (void *) CFRetain(graphicsFont);
+    }
 }
 
 @end
