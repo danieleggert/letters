@@ -21,6 +21,9 @@
 		3E111E901733D7F9008CD596 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E111E891733D7F9008CD596 /* Default.png */; };
 		3E111E911733D7F9008CD596 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E111E8A1733D7F9008CD596 /* Default@2x.png */; };
 		3E111E921733D7F9008CD596 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E111E8C1733D7F9008CD596 /* InfoPlist.strings */; };
+		3E111E961733D933008CD596 /* GlyphSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E111E951733D933008CD596 /* GlyphSequence.m */; };
+		3E111E981733DD6B008CD596 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E111E971733DD6B008CD596 /* CoreText.framework */; };
+		3E111E9B1733DEB9008CD596 /* Glyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E111E9A1733DEB9008CD596 /* Glyph.m */; };
 		D2589A68E84EF85DCCADEFC7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589965F7F155A4635040ED /* RootViewController.m */; };
 		D2589E9648ADF82CBB7881D8 /* PanningHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589FDE367E6E3A0223D6EE /* PanningHandler.m */; };
 /* End PBXBuildFile section */
@@ -55,6 +58,11 @@
 		3E111E8A1733D7F9008CD596 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3E111E8D1733D7F9008CD596 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		3E111E8E1733D7F9008CD596 /* Letters-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Letters-Info.plist"; sourceTree = "<group>"; };
+		3E111E941733D933008CD596 /* GlyphSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyphSequence.h; sourceTree = "<group>"; };
+		3E111E951733D933008CD596 /* GlyphSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlyphSequence.m; sourceTree = "<group>"; };
+		3E111E971733DD6B008CD596 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3E111E991733DEB9008CD596 /* Glyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Glyph.h; sourceTree = "<group>"; };
+		3E111E9A1733DEB9008CD596 /* Glyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Glyph.m; sourceTree = "<group>"; };
 		D258986B495AB2502A04AC6B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D25898DA39C6AA556E2094B3 /* PanningHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanningHandler.h; sourceTree = "<group>"; };
 		D2589965F7F155A4635040ED /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
@@ -69,6 +77,7 @@
 				3E111E501733D79B008CD596 /* UIKit.framework in Frameworks */,
 				3E111E521733D79B008CD596 /* Foundation.framework in Frameworks */,
 				3E111E541733D79B008CD596 /* CoreGraphics.framework in Frameworks */,
+				3E111E981733DD6B008CD596 /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +121,7 @@
 				3E111E511733D79B008CD596 /* Foundation.framework */,
 				3E111E531733D79B008CD596 /* CoreGraphics.framework */,
 				3E111E6D1733D79B008CD596 /* SenTestingKit.framework */,
+				3E111E971733DD6B008CD596 /* CoreText.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,6 +133,10 @@
 				3E111E5F1733D79B008CD596 /* AppDelegate.m */,
 				3E111E841733D7E1008CD596 /* Letters-Prefix.pch */,
 				3E111E851733D7E1008CD596 /* main.m */,
+				3E111E941733D933008CD596 /* GlyphSequence.h */,
+				3E111E951733D933008CD596 /* GlyphSequence.m */,
+				3E111E991733DEB9008CD596 /* Glyph.h */,
+				3E111E9A1733DEB9008CD596 /* Glyph.m */,
 				D2589965F7F155A4635040ED /* RootViewController.m */,
 				D258986B495AB2502A04AC6B /* RootViewController.h */,
 				D2589FDE367E6E3A0223D6EE /* PanningHandler.m */,
@@ -281,6 +295,8 @@
 			files = (
 				3E111E601733D79B008CD596 /* AppDelegate.m in Sources */,
 				3E111E861733D7E1008CD596 /* main.m in Sources */,
+				3E111E961733D933008CD596 /* GlyphSequence.m in Sources */,
+				3E111E9B1733DEB9008CD596 /* Glyph.m in Sources */,
 				D2589A68E84EF85DCCADEFC7 /* RootViewController.m in Sources */,
 				D2589E9648ADF82CBB7881D8 /* PanningHandler.m in Sources */,
 			);
