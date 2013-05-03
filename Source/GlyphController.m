@@ -34,6 +34,10 @@
 }
 
 - (void)clear {
+    for (UIView* view in glyphContainer.subviews) {
+        if (![view isKindOfClass:[GlyphView class]]) continue;
+        [view removeFromSuperview];
+    }
     selectedGlyphs = [NSMutableSet set];
 }
 

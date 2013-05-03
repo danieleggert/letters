@@ -10,6 +10,7 @@
 #import "GlyphSequence.h"
 #import "Glyph.h"
 #import "GlyphController.h"
+#import "AddTextViewController.h"
 
 
 @interface RootViewController () <UIGestureRecognizerDelegate>
@@ -22,7 +23,6 @@
 
 @interface RootViewController (AddingText) <UITextFieldDelegate>
 
-- (void)setupAddTextButton;
 - (void)addGlyphsForText:(NSString *)text;
 
 @end
@@ -32,6 +32,7 @@
 @implementation RootViewController {
     GlyphController* glyphController;
     UIView *_addTextView;
+    AddTextViewController* addTextViewController;
 }
 
 - (void)viewDidLoad {
@@ -40,9 +41,28 @@
 }
 
 - (void)setup {
-    [self addGlyphsForText:@"Hello!"];
-    [self setupAddTextButton];
     glyphController = [[GlyphController alloc] initWithView:self.view];
+    [self setupToolbar];
+    [self addGlyphsForText:@"Hello!"];
+}
+
+- (void)setupToolbar {
+    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController.toolbar setBarStyle:UIBarStyleBlackOpaque];
+    UIBarButtonItem* addButton = [[UIBarButtonItem alloc] initWithTitle:@"More Text!"
+                                                                  style:UIBarButtonItemStyleBordered
+                                                                 target:self
+                                                                 action:@selector(showAddTextView:)];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem* clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear"
+                                                                     style:UIBarButtonItemStyleBordered
+                                                                    target:self
+                                                                    action:@selector(clearGlyphs:)];
+    UIBarButtonItem* deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete Letter"
+                                                                     style:UIBarButtonItemStyleBordered
+                                                                    target:self
+                                                                    action:@selector(deleteGlyphs:)];
+    [self setToolbarItems:@[addButton, flexibleSpace, clearButton, deleteButton]];
 }
 
 - (NSArray *)viewsForString:(NSString *)text;
@@ -60,84 +80,40 @@
 }
 
 
+- (void)clearGlyphs:(id)sender {
+    [glyphController clear];
+}
+
+- (void)deleteGlyphs:(id)sender {
+    [glyphController deleteSelectedGlyphs];
+}
+
 @end
 
 
 @implementation RootViewController (AddingText)
 
-- (void)setupAddTextButton;
-{
-    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addButton.titleLabel.text = @"+";
-    addButton.frame = CGRectMake(0, 0, 40, 40);
-    [addButton addTarget:self action:@selector(showAddTextView:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addButton];
-}
-
 - (void)showAddTextView:(id)sender;
 {
-    (void) sender;
-    UIView *view = self.addTextView;
-    if (view.superview == nil) {
-        [self.view addSubview:view];
-    }
-    view.hidden = NO;
+    addTextViewController = [[AddTextViewController alloc] init];
+    [self presentViewController:addTextViewController animated:YES completion:NULL];
 }
 
-- (UIView *)addTextView;
-{
-    if (_addTextView == nil) {
-        _addTextView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
-        _addTextView.backgroundColor = [UIColor cyanColor];
-
-        UITextField *field = [[UITextField alloc] initWithFrame:CGRectZero];
-        field.translatesAutoresizingMaskIntoConstraints = NO;
-        field.backgroundColor = [UIColor whiteColor];
-        field.delegate = self;
-        [_addTextView addSubview:field];
-
-        UIButton *add = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        add.translatesAutoresizingMaskIntoConstraints = NO;
-        [add setTitle:@"Add" forState:UIControlStateNormal];
-        [add addTarget:self action:@selector(addText:) forControlEvents:UIControlEventTouchUpInside];
-        [_addTextView addSubview:add];
-
-        UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        cancel.translatesAutoresizingMaskIntoConstraints = NO;
-        [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
-        [cancel addTarget:self action:@selector(cancelAddingText:) forControlEvents:UIControlEventTouchUpInside];
-        [_addTextView addSubview:cancel];
-
-        NSDictionary *metrics = nil;
-        NSDictionary *views = NSDictionaryOfVariableBindings(field, add, cancel);
-        [_addTextView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[field]-[add(50)]-[cancel(==add)]-|" options:0 metrics:metrics views:views]];
-        [_addTextView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[field]-|" options:0 metrics:metrics views:views]];
-        [_addTextView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[add]-|" options:0 metrics:metrics views:views]];
-        [_addTextView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[cancel]-|" options:0 metrics:metrics views:views]];
-    }
-    return _addTextView;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField;
-{
-    self.textToBeAdded = textField.text;
+- (void)dismissAddTextView {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    addTextViewController = nil;
 }
 
 - (void)addText:(UIButton *)sender;
 {
-    if (![self.view.window endEditing:NO]) {
-        return;
-    }
-    [self addGlyphsForText:self.textToBeAdded];
-    self.textToBeAdded = nil;
-    self.addTextView.hidden = YES;
+    [addTextViewController.view endEditing:YES];
+    [self addGlyphsForText:addTextViewController.textToBeAdded];
+    [self dismissAddTextView];
 }
 
 - (void)cancelAddingText:(UIButton *)sender;
 {
-    [self.view.window endEditing:YES];
-    self.textToBeAdded = nil;
-    self.addTextView.hidden = YES;
+    [self dismissAddTextView];
 }
 
 - (void)addGlyphsForText:(NSString *)text;

@@ -8,10 +8,6 @@
 #import <Foundation/Foundation.h>
 
 
-@interface GlyphController : NSObject
-- (id)initWithView:(UIView*)view;
-
-- (void)clear;
-
-- (void)deleteSelectedGlyphs;
+@interface AddTextViewController : UIViewController
+@property(nonatomic, copy) NSString* textToBeAdded;
 @end

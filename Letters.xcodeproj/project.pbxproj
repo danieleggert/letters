@@ -26,6 +26,7 @@
 		3E111E9B1733DEB9008CD596 /* Glyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E111E9A1733DEB9008CD596 /* Glyph.m */; };
 		3E111E9E1733E571008CD596 /* GlyphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E111E9D1733E571008CD596 /* GlyphView.m */; };
 		3E111EA11733E64D008CD596 /* Glyph+Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E111EA01733E64C008CD596 /* Glyph+Drawing.m */; };
+		D258963105F8DB7685283D80 /* AddTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25890D0151D1F3B824ECDAB /* AddTextViewController.m */; };
 		D2589A68E84EF85DCCADEFC7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589965F7F155A4635040ED /* RootViewController.m */; };
 		D2589AFF4990AABABA71AA2A /* GlyphController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589F332ECD0A05680E7CB5 /* GlyphController.m */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,8 @@
 		3E111E9F1733E64C008CD596 /* Glyph+Drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Glyph+Drawing.h"; sourceTree = "<group>"; };
 		3E111EA01733E64C008CD596 /* Glyph+Drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Glyph+Drawing.m"; sourceTree = "<group>"; };
 		3E111EA21733EAE7008CD596 /* Glyph+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Glyph+Internal.h"; sourceTree = "<group>"; };
+		D25890D0151D1F3B824ECDAB /* AddTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTextViewController.m; sourceTree = "<group>"; };
+		D2589331BF5814B1FAC53C13 /* AddTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTextViewController.h; sourceTree = "<group>"; };
 		D258959773A0BA32E3CB46CC /* GlyphController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyphController.h; sourceTree = "<group>"; };
 		D258986B495AB2502A04AC6B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D2589965F7F155A4635040ED /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				3E111E9D1733E571008CD596 /* GlyphView.m */,
 				D2589F332ECD0A05680E7CB5 /* GlyphController.m */,
 				D258959773A0BA32E3CB46CC /* GlyphController.h */,
+				D25890D0151D1F3B824ECDAB /* AddTextViewController.m */,
+				D2589331BF5814B1FAC53C13 /* AddTextViewController.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				3E111E9E1733E571008CD596 /* GlyphView.m in Sources */,
 				3E111EA11733E64D008CD596 /* Glyph+Drawing.m in Sources */,
 				D2589AFF4990AABABA71AA2A /* GlyphController.m in Sources */,
+				D258963105F8DB7685283D80 /* AddTextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,11 +18,11 @@
     switch (self.drawingStyle) {
         default:
         case GlyphDrawingStyle0: {
-            CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
+            CGContextSetFillColorWithColor(ctx, [UIColor orangeColor].CGColor);
             break;
         }
         case GlyphDrawingStyle1: {
-            CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
+            CGContextSetFillColorWithColor(ctx, [UIColor purpleColor].CGColor);
             break;
         }
         case GlyphDrawingStyle2: {
@@ -38,7 +38,7 @@
     [self showInContext:ctx centeredInRect:rect];
 
     if (selected) {
-        CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor darkGrayColor].CGColor);
         CGContextSetLineWidth(ctx, 3);
         CGContextSetTextDrawingMode(ctx, kCGTextStroke);
         [self showInContext:ctx centeredInRect:rect];
