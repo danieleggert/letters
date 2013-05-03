@@ -15,22 +15,28 @@
 
 - (void)drawSelected:(BOOL)selected context:(CGContextRef)ctx centeredInRect:(CGRect)rect;
 {
-    CGContextSaveGState(ctx);
     switch (self.drawingStyle) {
         default:
         case GlyphDrawingStyle0: {
             CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
-            CGContextSetTextDrawingMode(ctx, kCGTextFill);
-            [self showInContext:ctx centeredInRect:rect];
-//            UIImage *image = [UIImage imageNamed:@"texture1"];
-//            CGRect rect = CGRectZero;
-//            rect.size = image.size;
-//            CGContextDrawTiledImage(ctx, rect, image.CGImage);
-//            CGContextFillRect(ctx, CGRectMake(-100, -100, 200, 200));
+            break;
+        }
+        case GlyphDrawingStyle1: {
+            CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
+            break;
+        }
+        case GlyphDrawingStyle2: {
+            CGContextSetFillColorWithColor(ctx, [UIColor greenColor].CGColor);
+            break;
+        }
+        case GlyphDrawingStyle3: {
+            CGContextSetFillColorWithColor(ctx, [UIColor cyanColor].CGColor);
             break;
         }
     }
-    CGContextRestoreGState(ctx);
+    CGContextSetTextDrawingMode(ctx, kCGTextFill);
+    [self showInContext:ctx centeredInRect:rect];
+
     if (selected) {
         CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
         CGContextSetLineWidth(ctx, 3);
