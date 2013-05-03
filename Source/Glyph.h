@@ -10,11 +10,23 @@
 
 
 
+typedef enum GlyphDrawingStyle_e {
+    GlyphDrawingStyle0 = 0,
+    GlyphDrawingStyle1,
+    GlyphDrawingStyle2,
+    GlyphDrawingStyle3,
+    
+    GlyphDrawingStyleCount,
+} GlyphDrawingStyle_t;
+
+
+
 @interface Glyph : NSObject
 
 + (instancetype)glyph;
 
 @property (nonatomic) CGPoint position;
 @property (readonly, nonatomic) CGRect boundingRect;
+@property (nonatomic) GlyphDrawingStyle_t drawingStyle;
 
 @end

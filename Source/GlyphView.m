@@ -63,15 +63,7 @@ static const CGFloat Margin = 1;
     r.origin.y -= self.offset.y;
 
     
-    if (self.selected) {
-        CGContextSetFillColorWithColor(ctx, [UIColor darkGrayColor].CGColor);
-        CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
-        CGContextSetTextDrawingMode(ctx, kCGTextFillStroke);
-    } else {
-        CGContextSetFillColorWithColor(ctx, [UIColor darkGrayColor].CGColor);
-        CGContextSetTextDrawingMode(ctx, kCGTextFill);
-    }
-    [self.glyph drawInContext:ctx centeredInRect:r];
+    [self.glyph drawSelected:self.selected context:ctx centeredInRect:r];
 }
 
 @end

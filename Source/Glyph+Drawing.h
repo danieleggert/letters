@@ -12,6 +12,6 @@
 
 @interface Glyph (Drawing)
 
-- (void)drawInContext:(CGContextRef)ctx centeredInRect:(CGRect)rect;
+- (void)drawSelected:(BOOL)selected context:(CGContextRef)ctx centeredInRect:(CGRect)rect;
 
 @end
