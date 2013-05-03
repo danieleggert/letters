@@ -27,6 +27,7 @@
 		3E111E9E1733E571008CD596 /* GlyphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E111E9D1733E571008CD596 /* GlyphView.m */; };
 		3E111EA11733E64D008CD596 /* Glyph+Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E111EA01733E64C008CD596 /* Glyph+Drawing.m */; };
 		D2589A68E84EF85DCCADEFC7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589965F7F155A4635040ED /* RootViewController.m */; };
+		D2589AFF4990AABABA71AA2A /* GestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589F332ECD0A05680E7CB5 /* GestureController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +70,10 @@
 		3E111E9F1733E64C008CD596 /* Glyph+Drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Glyph+Drawing.h"; sourceTree = "<group>"; };
 		3E111EA01733E64C008CD596 /* Glyph+Drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Glyph+Drawing.m"; sourceTree = "<group>"; };
 		3E111EA21733EAE7008CD596 /* Glyph+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Glyph+Internal.h"; sourceTree = "<group>"; };
+		D258959773A0BA32E3CB46CC /* GestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureController.h; sourceTree = "<group>"; };
 		D258986B495AB2502A04AC6B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D2589965F7F155A4635040ED /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		D2589F332ECD0A05680E7CB5 /* GestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,8 @@
 				D2589965F7F155A4635040ED /* RootViewController.m */,
 				3E111E9C1733E571008CD596 /* GlyphView.h */,
 				3E111E9D1733E571008CD596 /* GlyphView.m */,
+				D2589F332ECD0A05680E7CB5 /* GestureController.m */,
+				D258959773A0BA32E3CB46CC /* GestureController.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 				D2589A68E84EF85DCCADEFC7 /* RootViewController.m in Sources */,
 				3E111E9E1733E571008CD596 /* GlyphView.m in Sources */,
 				3E111EA11733E64D008CD596 /* Glyph+Drawing.m in Sources */,
+				D2589AFF4990AABABA71AA2A /* GestureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
