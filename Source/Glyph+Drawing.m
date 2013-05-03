@@ -16,7 +16,11 @@
 - (void)drawInContext:(CGContextRef)ctx centeredInRect:(CGRect)rect;
 {
     CGPoint position = rect.origin;
+    // Flip:
     position.y -= CGRectGetHeight(self.boundingRect);
+    // Offset for the bounding rect:
+    position.x -= self.boundingRect.origin.x;
+    position.y -= self.boundingRect.origin.y;
     
     CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
     CGContextSetTextDrawingMode(ctx, kCGTextFill);

@@ -11,6 +11,15 @@
 #import "Glyph.h"
 #import "Glyph+Drawing.h"
 
+static const CGFloat Margin = 1;
+
+
+@interface GlyphView ()
+
+@property (nonatomic) CGPoint offset;
+
+@end
+
 
 
 @implementation GlyphView
@@ -20,16 +29,30 @@
     CGRect frame = glyph.boundingRect;
     frame.origin.x += glyph.position.x;
     frame.origin.y += glyph.position.y;
+    CGRect const originalFrame = frame;
+    frame = CGRectIntegral(frame);
+    frame = CGRectInset(frame, -Margin, -Margin);
     GlyphView *view = [[super alloc] initWithFrame:frame];
     view.glyph = glyph;
+    view.offset = CGPointMake(CGRectGetMinX(originalFrame) - CGRectGetMinX(frame),
+                              CGRectGetMinY(originalFrame) - CGRectGetMinY(frame));
+    view.backgroundColor = [UIColor clearColor];
     [view setNeedsDisplay];
     return view;
+}
+
+- (BOOL)isOpaque;
+{
+    return NO;
 }
 
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    [self.glyph drawInContext:ctx centeredInRect:self.bounds];
+    CGRect r = self.bounds;
+    r.origin.x += self.offset.x;
+    r.origin.y -= self.offset.y;
+    [self.glyph drawInContext:ctx centeredInRect:r];
 }
 
 @end

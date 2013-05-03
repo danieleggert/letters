@@ -36,8 +36,7 @@
 {
     _panHandlers = [NSMutableArray array];
     
-    for (UIView *view in [self viewsForString:@"Konf"]) {
-        view.backgroundColor = [UIColor greenColor];
+    for (UIView *view in [self viewsForString:@"UIKonf"]) {
         [self.view addSubview:view];
         [self.panHandlers addObject:[[PanningHandler alloc] initWithView:view]];
     }

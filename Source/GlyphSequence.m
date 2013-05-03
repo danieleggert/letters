@@ -69,8 +69,8 @@
 
 - (NSDictionary *)attributes;
 {
-    NSString *name = @"Helvetica";
-    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) name, 72, NULL);
+    NSString *name = @"Baskerville-SemiBold";
+    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) name, 96, NULL);
     return @{
              (__bridge id) kCTFontAttributeName: (__bridge id) font,
              };
@@ -82,6 +82,11 @@
         return @[];
     }
     NSMutableArray *result = [NSMutableArray array];
+    
+    CGFloat ascent;
+    CGFloat descent;
+    CTLineGetTypographicBounds(self.line, &ascent, &descent, NULL);
+    CGFloat const height = ascent + descent;
     
     NSArray *runs = (__bridge id) CTLineGetGlyphRuns(self.line);
     for (id myRun in runs) {
@@ -107,7 +112,10 @@
             Glyph *glyph = [Glyph glyph];
             glyph.graphicsFont = graphicsFont;
             glyph.pointSize = pointSize;
-            glyph.position = positions[i];
+            
+            CGPoint p = positions[i];
+            p.y += height - CGRectGetMaxY(boundingRects[i]);
+            glyph.position = p;
             glyph.graphicsGlyph = glyphs[i];
             glyph.textMatrix = textMatrix;
             glyph.boundingRect = boundingRects[i];
